@@ -2,3 +2,9 @@ package-lock.json
 node_modules/
 build/
 respuesta.json
+echo "node_modules/" >> .gitignore
+echo "build/" >> .gitignore
+echo "respuesta.json" >> .gitignore
+git add .gitignore
+git commit -m "chore: update gitignore"
+git push
