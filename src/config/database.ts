@@ -1,10 +1,11 @@
 import { MongoClient, Db } from "mongodb";
 import dotenv from "dotenv";
+import { env } from "./env";
 
 dotenv.config();
 
-const uri = process.env.MONGO_URI as string;
-const dbName = process.env.MONGO_DB_NAME as string;
+const uri = env.mongoUri;
+const dbName = env.mongoDbName;
 
 let client: MongoClient;
 let db: Db;

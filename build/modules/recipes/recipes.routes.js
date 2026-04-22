@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const recipes_controller_1 = require("./recipes.controller");
+const auth_middleware_1 = require("../../middlewares/auth.middleware");
+const validate_middleware_1 = require("../../middlewares/validate.middleware");
+const recipes_schema_1 = require("./recipes.schema");
+const router = (0, express_1.Router)();
+const controller = new recipes_controller_1.RecipesController();
+router.post("/", auth_middleware_1.authMiddleware, (0, validate_middleware_1.validate)(recipes_schema_1.createRecipeSchema), controller.create);
+router.get("/", auth_middleware_1.authMiddleware, controller.findAll);
+router.get("/result/:itemName", auth_middleware_1.authMiddleware, controller.findByResultItem);
+router.get("/:id", auth_middleware_1.authMiddleware, controller.findById);
+router.delete("/:id", auth_middleware_1.authMiddleware, controller.delete);
+exports.default = router;
